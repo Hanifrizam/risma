@@ -3,748 +3,484 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Selamat Ulang Tahun, Risma Agustina 💖</title>
+<title>Risma Agustina — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --pink: #ff6fa5;
-    --pink-soft: #ffc2dd;
-    --purple: #8b5cf6;
-    --purple-dark: #4a2c5e;
-    --gold: #ffd166;
-    --bg: #fff5f9;
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --primary:#7c3aed;
+    --primary-light:#a78bfa;
+    --primary-dark:#4c1d95;
+    --accent:#ec4899;
+    --bg:#fafafa;
+    --surface:#ffffff;
+    --text:#1e1b4b;
+    --text-muted:#6b7280;
+    --border:#e5e7eb;
+    --gradient:linear-gradient(135deg,var(--primary),var(--accent));
+    --shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(124,58,237,.08);
+    --shadow-lg:0 4px 12px rgba(0,0,0,.08),0 16px 40px rgba(124,58,237,.12);
+    --radius:16px;
+    --radius-sm:10px;
   }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(160deg, #fff5f9 0%, #f7ecff 50%, #ffeef6 100%);
-    color: var(--purple-dark);
-    overflow-x: hidden;
-  }
-  canvas#confetti {
-    position: fixed; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 60;
-  }
-  .balloon {
-    position: fixed; bottom: -160px; border-radius: 50% 50% 48% 52%;
-    opacity: 0.75; z-index: 0; pointer-events: none;
-    animation: floatUp linear infinite;
-  }
-  .balloon::after {
-    content: ''; position: absolute; left: 50%; bottom: -18px; width: 2px; height: 18px;
-    background: rgba(74, 44, 94, 0.4); transform: translateX(-50%);
-  }
-  @keyframes floatUp {
-    0% { transform: translateY(0) translateX(0) rotate(0deg); }
-    100% { transform: translateY(-120vh) translateX(30px) rotate(12deg); }
-  }
-  section { position: relative; z-index: 1; padding: 70px 20px; }
-  .wrap { max-width: 900px; margin: 0 auto; text-align: center; }
-  h2.title {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    color: var(--pink); margin-bottom: 14px; text-shadow: 0 2px 12px rgba(255,111,165,.35);
-  }
-  .subtitle { font-weight: 300; color: #8a6fa8; margin-bottom: 30px; }
-  .card {
-    background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);
-    border-radius: 24px; padding: 36px 28px; box-shadow: 0 20px 50px rgba(139,92,246,0.15);
-    border: 1px solid rgba(255,255,255,0.9);
-  }
+  html{scroll-behavior:smooth;font-size:16px}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+  h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.25}
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
 
-  /* INTRO */
-  #intro {
-    position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; text-align: center; gap: 22px;
-    background: linear-gradient(135deg, #ffb3d1, #c9b3ff, #ffd6ec);
-    transition: opacity 1s ease, visibility 1s ease;
-  }
-  #intro.hidden { opacity: 0; visibility: hidden; }
-  #intro .script { font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 6vw, 3rem); color: #fff; text-shadow: 0 3px 14px rgba(139,92,246,.5); }
-  #intro .small { color: #fff; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; font-size: .85rem; }
-  .btn {
-    display: inline-block; padding: 14px 34px; border-radius: 50px; border: none; cursor: pointer;
-    font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; color: #fff;
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    box-shadow: 0 10px 24px rgba(255,111,165,.4); transition: transform .25s, box-shadow .25s;
-  }
-  .btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 32px rgba(139,92,246,.45); }
-  .btn:active { transform: scale(.97); }
-  .btn.gold { background: linear-gradient(135deg, #ffb347, #ff8c42); box-shadow: 0 10px 24px rgba(255,150,60,.4); }
-  .btn.ghost { background: transparent; border: 2px solid var(--purple); color: var(--purple); box-shadow: none; }
-  .btn.ghost:hover { background: rgba(139,92,246,.1); }
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+  nav.scrolled{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);box-shadow:0 1px 8px rgba(0,0,0,.06)}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{font-size:.88rem;font-weight:500;color:var(--text-muted);transition:color .25s;position:relative}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gradient);border-radius:2px;transition:width .3s}
+  .nav-links a:hover{color:var(--primary)}
+  .nav-links a:hover::after{width:100%}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;border-radius:2px;transition:all .3s}
 
   /* HERO */
-  #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-  .hero-card { animation: popIn 1.2s ease both; }
-  @keyframes popIn { 0% { opacity: 0; transform: scale(.6) translateY(40px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
-  .hero-badge {
-    display: inline-block; background: linear-gradient(135deg, var(--gold), #ffb347); color: #7a4a00;
-    padding: 8px 22px; border-radius: 50px; font-size: .85rem; font-weight: 600; margin-bottom: 18px;
-    box-shadow: 0 6px 16px rgba(255,180,70,.4); animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
-  .hero-title {
-    font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 9vw, 5.5rem);
-    background: linear-gradient(120deg, var(--pink), var(--purple));
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 6px; line-height: 1.15;
-  }
-  .hero-name {
-    font-family: 'Great Vibes', cursive; font-size: clamp(2.2rem, 6vw, 3.6rem); color: var(--purple);
-    margin-bottom: 12px;
-  }
-  .hero-meta { color: #8a6fa8; font-weight: 300; margin-bottom: 26px; line-height: 1.9; }
-  .hero-meta strong { color: var(--purple-dark); font-weight: 600; }
-  .date-chip {
-    display: inline-block; margin-top: 18px; padding: 12px 26px; border-radius: 50px;
-    background: rgba(255,255,255,.8); border: 1.5px dashed var(--pink); font-weight: 600; color: var(--purple-dark);
-    font-size: .95rem; box-shadow: 0 8px 20px rgba(255,111,165,.15);
-  }
-  .scroll-hint { margin-top: 34px; color: var(--purple); opacity: .7; font-size: .85rem; animation: bounce 1.6s infinite; }
-  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
-  .hero-avatar {
-    width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
-    margin: 0 auto 18px; border: 4px solid rgba(255,255,255,.9);
-    box-shadow: 0 14px 30px rgba(139,92,246,.35);
-  }
+  .hero{min-height:100vh;display:flex;align-items:center;padding:100px 24px 60px}
+  .hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .hero-text{opacity:0;transform:translateY(30px);animation:fadeUp .8s .3s forwards}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.08);color:var(--primary);padding:8px 18px;border-radius:50px;font-size:.82rem;font-weight:600;margin-bottom:20px;letter-spacing:.3px}
+  .hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:pulse-dot 2s infinite}
+  @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:16px}
+  .hero h1 .gradient-text{background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p{font-size:1.05rem;color:var(--text-muted);max-width:480px;margin-bottom:32px;line-height:1.8}
+  .hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;border:none;transition:all .3s}
+  .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.3)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,58,237,.4)}
+  .btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary-light)}
+  .btn-outline:hover{background:rgba(124,58,237,.06);transform:translateY(-2px)}
+  .hero-image{display:flex;justify-content:center;opacity:0;transform:translateY(30px);animation:fadeUp .8s .5s forwards}
+  .hero-avatar{width:320px;height:320px;border-radius:50%;object-fit:cover;border:5px solid var(--surface);box-shadow:var(--shadow-lg);transition:transform .4s}
+  .hero-avatar:hover{transform:scale(1.03)}
+  .hero-avatar-ring{width:340px;height:340px;border-radius:50%;background:var(--gradient);padding:4px;display:flex;align-items:center;justify-content:center}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
-  /* SONG */
-  #song .music-box { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-  .notes-stage { position: relative; height: 90px; width: 100%; overflow: hidden; border-radius: 16px;
-    background: linear-gradient(180deg, rgba(255,182,193,.25), rgba(139,92,246,.12)); }
-  .note { position: absolute; bottom: -30px; font-size: 1.6rem; opacity: 0; animation: rise 4s linear infinite; }
-  @keyframes rise {
-    0% { transform: translateY(0) rotate(-12deg); opacity: 0; }
-    15% { opacity: 1; }
-    100% { transform: translateY(-100px) rotate(14deg); opacity: 0; }
-  }
-  #song.playing .note { animation-play-state: running; }
-  #song .note { animation-play-state: paused; }
-  .song-status { font-size: .9rem; color: #8a6fa8; font-style: italic; min-height: 22px; }
-  .progress-bar { width: min(340px, 80%); height: 6px; border-radius: 6px; background: rgba(139,92,246,.15); overflow: hidden; }
-  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--pink), var(--purple)); border-radius: 6px; transition: width .2s linear; }
+  /* SECTION */
+  section{padding:80px 24px}
+  .section-header{text-align:center;margin-bottom:50px}
+  .section-header h2{font-size:clamp(1.7rem,3.5vw,2.4rem);margin-bottom:10px}
+  .section-header p{color:var(--text-muted);max-width:520px;margin:0 auto;font-size:.95rem}
+  .section-header .line{width:48px;height:3px;background:var(--gradient);border-radius:3px;margin:12px auto 0}
 
-  /* GALLERY */
-  .gallery { position: relative; max-width: 620px; margin: 0 auto; }
-  .gallery-frame {
-    border-radius: 22px; overflow: hidden; box-shadow: 0 18px 44px rgba(139,92,246,.22);
-    background: #fff; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
-  }
-  .gallery-frame img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 22px; }
-  .gallery-frame img.active { display: block; animation: fadeIn .7s ease; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .gallery-btn {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
-    width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
-    background: rgba(255,255,255,.9); color: var(--purple); font-size: 1.3rem; font-weight: 700;
-    box-shadow: 0 6px 16px rgba(74,44,94,.2); transition: transform .2s;
-  }
-  .gallery-btn:hover { transform: translateY(-50%) scale(1.1); }
-  .gallery-btn.prev { left: 8px; }
-  .gallery-btn.next { right: 8px; }
-  .dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(139,92,246,.25); cursor: pointer; transition: background .3s, transform .3s; }
-  .dot.active { background: var(--pink); transform: scale(1.35); }
-  .caption { margin-top: 14px; color: #8a6fa8; font-weight: 300; font-size: .95rem; min-height: 24px; }
+  /* ABOUT */
+  .about-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+  .about-card{background:var(--surface);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);border:1px solid var(--border)}
+  .about-card h3{font-size:1.15rem;margin-bottom:14px;color:var(--primary)}
+  .about-card p{color:var(--text-muted);font-size:.93rem;line-height:1.8}
+  .about-info{list-style:none;margin-top:20px}
+  .about-info li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem}
+  .about-info li:last-child{border:none}
+  .about-info .label{color:var(--text-muted);min-width:90px}
+  .about-info .value{font-weight:500;color:var(--text)}
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .stat-item{text-align:center;padding:20px 12px;background:rgba(124,58,237,.04);border-radius:var(--radius-sm)}
+  .stat-item .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--primary)}
+  .stat-item .lbl{font-size:.78rem;color:var(--text-muted);margin-top:4px}
 
-  /* SECRET */
-  .lock-icon { font-size: 3.4rem; margin-bottom: 14px; }
-  #secret .locked .open-area { display: none; }
-  #secret.unlocked .locked-area { display: none; }
-  .countdown { display: flex; justify-content: center; gap: 12px; margin: 24px 0 18px; flex-wrap: wrap; }
-  .count-box { background: linear-gradient(135deg, #fff, #f6ecff); border-radius: 16px; padding: 14px 10px; min-width: 76px;
-    box-shadow: 0 8px 18px rgba(139,92,246,.12); border: 1px solid rgba(139,92,246,.15); }
-  .count-num { font-size: 1.8rem; font-weight: 700; color: var(--purple); }
-  .count-label { font-size: .7rem; color: #8a6fa8; text-transform: uppercase; letter-spacing: 1px; }
-  #unlockBtn { position: relative; }
-  #unlockBtn.shake { animation: shake .45s ease; }
-  @keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-10px) rotate(-2deg); } 40% { transform: translateX(10px) rotate(2deg); } 60% { transform: translateX(-8px); } 80% { transform: translateX(8px); } }
-  .envelope-wrap { perspective: 800px; }
-  .envelope { transform-style: preserve-3d; transition: transform 1s ease; }
-  .envelope.open { transform: rotateX(50deg) translateY(-12px); }
-  .letter { display: none; margin-top: 8px; text-align: left; max-height: 420px; overflow-y: auto; }
-  .letter.show { display: block; animation: letterUp .9s ease; }
-  @keyframes letterUp { from { opacity: 0; transform: translateY(30px) scale(.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-  .letter p { margin-bottom: 14px; line-height: 1.9; font-weight: 300; font-size: .98rem; }
-  .letter .salute { font-family: 'Great Vibes', cursive; font-size: 1.7rem; color: var(--pink); }
-  .letter .sign { font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: var(--purple); text-align: right; }
+  /* EDUCATION */
+  .timeline{max-width:700px;margin:0 auto;position:relative}
+  .timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--primary-light),var(--accent))}
+  .timeline-item{display:flex;gap:24px;margin-bottom:32px;position:relative}
+  .timeline-dot{width:42px;height:42px;border-radius:50%;background:var(--surface);border:3px solid var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-size:.85rem;font-weight:700;color:var(--primary)}
+  .timeline-content{background:var(--surface);border-radius:var(--radius-sm);padding:22px 26px;box-shadow:var(--shadow);border:1px solid var(--border);flex:1;transition:transform .3s,box-shadow .3s}
+  .timeline-content:hover{transform:translateX(6px);box-shadow:var(--shadow-lg)}
+  .timeline-content .year{font-size:.78rem;font-weight:600;color:var(--primary);background:rgba(124,58,237,.08);padding:4px 12px;border-radius:50px;display:inline-block;margin-bottom:8px}
+  .timeline-content h3{font-size:1rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:4px}
+  .timeline-content p{font-size:.88rem;color:var(--text-muted)}
+  .timeline-content .rank{font-size:.82rem;color:var(--accent);font-weight:600;margin-top:6px}
 
-  /* DATE */
-  .invite-badge { font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; }
-  .venue { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--purple); margin: 8px 0 4px; }
-  .venue-detail { color: #8a6fa8; font-weight: 300; margin-bottom: 8px; }
-  .maps-link { display: inline-block; margin: 10px 0 22px; color: var(--pink); font-weight: 600; text-decoration: none;
-    border-bottom: 2px dashed var(--pink); padding-bottom: 2px; }
-  .maps-link:hover { color: var(--purple); border-color: var(--purple); }
-  .plan-list { text-align: left; max-width: 440px; margin: 18px auto 26px; }
-  .plan-list li { list-style: none; padding: 10px 0; border-bottom: 1px dashed rgba(139,92,246,.2); display: flex; gap: 12px; align-items: flex-start; font-weight: 300; }
-  .plan-list li .emoji { font-size: 1.3rem; }
-  .rsvp { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .rsvp-msg { margin-top: 18px; font-weight: 600; color: var(--purple); min-height: 30px; }
-  .hearts-burst { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 70; }
-  .heart-fly { position: absolute; font-size: 1.4rem; animation: heartFly 1.6s ease-out forwards; }
-  @keyframes heartFly {
-    0% { transform: translate(0, 0) scale(.4); opacity: 1; }
-    100% { transform: translate(var(--dx), var(--dy)) scale(1.4) rotate(var(--rot)); opacity: 0; }
-  }
+  /* SKILLS */
+  .skills-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+  .skill-card{background:var(--surface);border-radius:var(--radius-sm);padding:26px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;cursor:default}
+  .skill-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .skill-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px}
+  .skill-card h3{font-size:.95rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+  .skill-card p{font-size:.84rem;color:var(--text-muted);line-height:1.6}
+  .si-purple{background:rgba(124,58,237,.1);color:var(--primary)}
+  .si-pink{background:rgba(236,72,153,.1);color:var(--accent)}
+  .si-blue{background:rgba(59,130,246,.1);color:#3b82f6}
+  .si-green{background:rgba(16,185,129,.1);color:#10b981}
+  .si-orange{background:rgba(245,158,11,.1);color:#f59e0b}
 
-  /* CELEBRATION */
-  .stage { position: relative; display: flex; flex-direction: column; align-items: center; gap: 34px; }
-  .cake { position: relative; width: 240px; height: 210px; margin-top: 20px; }
-  .cake-base {
-    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 210px; height: 90px; border-radius: 14px;
-    background: linear-gradient(180deg, #ff9ecb, #ff6fa5); box-shadow: 0 14px 26px rgba(255,111,165,.35);
-  }
-  .cake-mid {
-    position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);
-    width: 150px; height: 70px; border-radius: 12px;
-    background: linear-gradient(180deg, #c9b3ff, #8b5cf6); box-shadow: 0 12px 22px rgba(139,92,246,.35);
-  }
-  .drip { position: absolute; width: 16px; height: 24px; border-radius: 0 0 10px 10px; background: rgba(255,255,255,.75); }
-  .candle { position: absolute; bottom: 160px; width: 8px; height: 34px; border-radius: 4px;
-    background: repeating-linear-gradient(45deg, #fff, #fff 3px, #ffd166 3px, #ffd166 6px); }
-  .flame {
-    position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
-    width: 14px; height: 22px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    background: radial-gradient(circle at 50% 75%, #fff7d6, #ffd166 45%, #ff8c42 75%, transparent 80%);
-    animation: flicker .35s ease-in-out infinite alternate;
-  }
-  @keyframes flicker { from { transform: translateX(-50%) scale(1) rotate(-4deg); } to { transform: translateX(-50%) scale(1.15) rotate(4deg); } }
-  .flame.out { display: none; }
-  .smoke { position: absolute; bottom: 20px; left: 50%; width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(150,150,170,.5); opacity: 0; }
-  .smoke.puff { animation: puff 1.4s ease-out forwards; }
-  @keyframes puff { 0% { opacity: .7; transform: translate(-50%, 0) scale(.6); } 100% { opacity: 0; transform: translate(calc(-50% + 12px), -80px) scale(2.4); } }
-  .cake-wish { min-height: 28px; font-weight: 600; color: var(--purple); font-style: italic; }
+  /* EXPERIENCE */
+  .exp-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .exp-card{background:var(--surface);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .3s,box-shadow .3s}
+  .exp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .exp-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.78rem;font-weight:600;margin-bottom:16px}
+  .exp-badge.work{background:rgba(124,58,237,.08);color:var(--primary)}
+  .exp-badge.org{background:rgba(236,72,153,.08);color:var(--accent)}
+  .exp-card h3{font-size:1.05rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:4px}
+  .exp-card .role{font-size:.85rem;color:var(--text-muted);margin-bottom:12px}
+  .exp-card ul{list-style:none}
+  .exp-card ul li{font-size:.88rem;color:var(--text-muted);padding:5px 0;padding-left:16px;position:relative;line-height:1.6}
+  .exp-card ul li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--primary-light)}
+
+  /* ACHIEVEMENT */
+  .achieve-card{max-width:600px;margin:0 auto;background:var(--surface);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);border:1px solid var(--border);text-align:center;position:relative;overflow:hidden}
+  .achieve-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient)}
+  .achieve-icon{font-size:3rem;margin-bottom:16px}
+  .achieve-card h3{font-size:1.1rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
+  .achieve-card p{color:var(--text-muted);font-size:.9rem}
+
+  /* CONTACT */
+  .contact-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .contact-item{background:var(--surface);border-radius:var(--radius-sm);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;align-items:center;gap:16px;transition:transform .3s,box-shadow .3s}
+  .contact-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .contact-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+  .contact-item h4{font-size:.85rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:2px}
+  .contact-item p{font-size:.82rem;color:var(--text-muted);word-break:break-all}
+  .contact-item a{color:var(--primary);font-weight:500;transition:color .2s}
+  .contact-item a:hover{color:var(--accent)}
 
   /* FOOTER */
-  footer { position: relative; z-index: 1; text-align: center; padding: 40px 20px 60px; color: #8a6fa8; font-weight: 300; font-size: .9rem; }
-  footer .social-row { display: flex; justify-content: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
-  footer .social-chip {
-    display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 50px;
-    background: rgba(255,255,255,.85); border: 1px solid rgba(139,92,246,.2); color: var(--purple);
-    font-size: .85rem; font-weight: 600; text-decoration: none; box-shadow: 0 6px 16px rgba(139,92,246,.12);
-    transition: transform .25s, box-shadow .25s, background .25s;
-  }
-  footer .social-chip:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(139,92,246,.22); background: #fff; }
-  footer .social-chip .ico { font-size: 1.05rem; }
-  footer .heartbeat { display: inline-block; animation: beat 1.2s infinite; }
-  @keyframes beat { 0%,100% { transform: scale(1); } 25% { transform: scale(1.25); } 40% { transform: scale(1); } }
+  footer{background:var(--text);color:rgba(255,255,255,.6);text-align:center;padding:40px 24px;font-size:.85rem}
+  footer a{color:var(--primary-light);transition:color .2s}
+  footer a:hover{color:#fff}
 
-  /* TOAST */
-  #toast {
-    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
-    background: rgba(74,44,94,.95); color: #fff; padding: 13px 26px; border-radius: 50px;
-    font-size: .9rem; z-index: 110; opacity: 0; transition: transform .4s ease, opacity .4s ease;
-    box-shadow: 0 10px 26px rgba(0,0,0,.25); pointer-events: none;
-  }
-  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  /* SCROLL ANIMATION */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+  .reveal.visible{opacity:1;transform:translateY(0)}
 
-  @media (max-width: 520px) {
-    .count-box { min-width: 62px; }
-    .count-num { font-size: 1.3rem; }
-    .gallery-frame { aspect-ratio: 1/1; }
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:24px 0;gap:18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .nav-links.open{display:flex}
+    .nav-toggle{display:block}
+    .hero-inner{grid-template-columns:1fr;text-align:center;gap:30px}
+    .hero-avatar-ring{width:240px;height:240px}
+    .hero-avatar{width:230px;height:230px}
+    .hero p{margin:0 auto 32px}
+    .hero-buttons{justify-content:center}
+    .about-grid{grid-template-columns:1fr}
+    .about-stats{grid-template-columns:repeat(3,1fr)}
+    .exp-grid{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:480px){
+    .hero h1{font-size:1.8rem}
+    .about-stats{grid-template-columns:1fr}
   }
 </style>
 </head>
 <body>
 
-<canvas id="confetti"></canvas>
-
-<div id="intro">
-  <div class="small">Ada sesuatu yang spesial untukmu</div>
-  <div class="script">Untuk Risma Agustina</div>
-  <button class="btn" onclick="startExperience()">Buka Kejutan 💌</button>
-</div>
-
-<div id="toast"></div>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">RA.</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Beranda</a></li>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#education">Pendidikan</a></li>
+      <li><a href="#skills">Keahlian</a></li>
+      <li><a href="#experience">Pengalaman</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="wrap">
-    <div class="card hero-card">
-      <img class="hero-avatar" src="fotorisma.jpeg" alt="Foto Risma Agustina">
-      <span class="hero-badge">🎂 Hari Spesial · 17 Agustus 2026</span>
-      <h1 class="hero-title">Selamat Ulang Tahun</h1>
-      <div class="hero-name">Risma Agustina</div>
-      <p class="hero-meta">
-        <strong>23 tahun</strong> · hari ini dunia tidak hanya merayakan kemerdekaan,<br>
-        tapi juga hadirnya kamu — 23 tahun lalu, dan setiap hari sejak itu 💛
-      </p>
-      <div class="date-chip">🎉 Jumat, 17 Agustus 2026 · 23rd Birthday 🎉</div>
-      <div class="scroll-hint">scroll ke bawah, ada banyak kejutan di sini ↓</div>
-    </div>
-  </div>
-</section>
-
-<!-- SONG -->
-<section id="song">
-  <div class="wrap">
-    <h2 class="title">Lagu untukmu</h2>
-    <p class="subtitle">Tekan play, dan nyanyikan dalam hatimu ya…</p>
-    <div class="card music-box">
-      <div class="notes-stage" id="notesStage">
-        <span class="note" style="left:8%">🎵</span>
-        <span class="note" style="left:22%;animation-delay:1s">🎶</span>
-        <span class="note" style="left:38%;animation-delay:2s">🎵</span>
-        <span class="note" style="left:55%;animation-delay:.5s">🎶</span>
-        <span class="note" style="left:70%;animation-delay:1.6s">🎵</span>
-        <span class="note" style="left:86%;animation-delay:2.6s">🎶</span>
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag"><span class="dot"></span> Sedia untuk Kolaborasi</div>
+      <h1>Halo, saya<br><span class="gradient-text">Risma Agustina</span></h1>
+      <p>Mahasiswa S1 Digital Applied Accounting di Universitas BSI dengan minat di bidang akuntansi, sumber daya manusia, dan manajemen.</p>
+      <div class="hero-buttons">
+        <a href="CV Risma Agustina.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Lihat CV
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Hubungi Saya
+        </a>
       </div>
-      <button class="btn" id="songBtn" onclick="toggleSong()">▶️ Putar Lagu Ulang Tahun</button>
-      <div class="song-status" id="songStatus">🎵 Selamat ulang tahun… (piano)</div>
-      <div class="progress-bar"><div class="progress-fill" id="songProgress"></div></div>
     </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="wrap">
-    <h2 class="title">Kenangan Kita</h2>
-    <p class="subtitle">Beberapa momen yang paling aku sayang 💕</p>
-    <div class="gallery card">
-      <div class="gallery-frame">
-        <img src="fotorisma1.jpg" alt="fotorisma1.jpg" class="active">
-        <img src="fotorisma2.jpg" alt="fotorisma2.jpg">
-        <img src="fotorisma3.jpg" alt="fotorisma3.jpg">
-        <img src="fotorisma4.jpg" alt="fotorisma4.jpg">
+    <div class="hero-image">
+      <div class="hero-avatar-ring">
+        <img class="hero-avatar" src="fotorisma.jpeg" alt="Risma Agustina">
       </div>
-      <button class="gallery-btn prev" onclick="moveGallery(-1)">‹</button>
-      <button class="gallery-btn next" onclick="moveGallery(1)">›</button>
-      <div class="dots" id="dots"></div>
-      <div class="caption" id="galleryCaption"></div>
     </div>
   </div>
 </section>
 
-<!-- SECRET MESSAGE -->
-<section id="secret">
-  <div class="wrap">
-    <h2 class="title">Pesan Rahasia 💌</h2>
-    <div class="card" id="secretCard">
-      <div class="locked-area">
-        <div class="lock-icon">🔒</div>
-        <p class="subtitle" style="margin-bottom:6px">Ada sebuah pesan khusus yang hanya bisa dibuka<br>pada hari ulang tahunmu.</p>
-        <p style="font-weight:600;color:var(--purple)">17 Agustus 2026 · 00:00 WIB</p>
-        <div class="countdown" id="countdown">
-          <div class="count-box"><div class="count-num" id="cdD">00</div><div class="count-label">Hari</div></div>
-          <div class="count-box"><div class="count-num" id="cdH">00</div><div class="count-label">Jam</div></div>
-          <div class="count-box"><div class="count-num" id="cdM">00</div><div class="count-label">Menit</div></div>
-          <div class="count-box"><div class="count-num" id="cdS">00</div><div class="count-label">Detik</div></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <h2>Tentang Saya</h2>
+    <p>Lebih mengenal siapa Risma Agustina</p>
+    <div class="line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <h3>Profil Singkat</h3>
+      <p>Saya adalah mahasiswa aktif program studi Digital Applied Accounting di Universitas BSI Kampus Cibitung. Memiliki pengalaman magang sebagai Accounting Staff di PT Daya Miffa, serta aktif dalam organisasi BSI Student Executive Board. Berkomitmen untuk terus belajar dan berkembang di bidang akuntansi dan manajemen sumber daya manusia.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="num">4+</div>
+          <div class="lbl">Tahun Pendidikan</div>
         </div>
-        <button class="btn" id="unlockBtn" onclick="tryUnlock()">💌 Buka Pesan</button>
-      </div>
-      <div class="open-area">
-        <div class="envelope-wrap">
-          <div class="envelope" id="envelope">
-            <button class="btn" onclick="openLetter()">💖 Buka Amplopnya, Sayang</button>
-          </div>
+        <div class="stat-item">
+          <div class="num">1</div>
+          <div class="lbl">Pengalaman Magang</div>
         </div>
-        <div class="letter card" id="letterBox">
-          <p class="salute">Untuk Risma Agustina tersayang…</p>
-          <p>Selamat ulang tahun yang ke-23, my ayang whewhe 17 Agustus, adalah hari yang sakral buat kita wkaka bukan hanya karena indonesia merdeka, tapi karena di hari ini pula, 23 tahun yang lalu, kamu berojol ke dunia ini <strong>mwah</strong>.</p>
-          <p>Makasih ya kamu selalu ada selalu di samping aku, dan juga aku beneran beruntung banget jujur ketemu kamu, karena kamu beneran buat hari-hari aku bahagia. Gak akan pernah aku sesali pertemuan pertama aku dengan kamu.</p>
-          <p>Di usia kamu yang ke-23 ini, kamu perlu tau kalau kamu tidak pernah sendirian. Aku akan selalu ada di saat kamu tertawa, di saat kamu menangis, di saat kamu merasa hebat, dan di saat kamu merasa ragu. Apapun yang kamu impikan di tahun ke-23 ini, aku ingin menjadi bagian dari perjalanan itu eheheeh.</p>
-          <p>Terima kasih sudah menjadi Risma yang asik, yang cerewet, yang pemarah, yang periang, yang super effort, super support. Terima kasih sudah hadir, sudah sabar, sudah tulus, dan sudah mengizinkan aku mencintaimu dengan sepenuh hati aziiiikk.</p>
-          <p>Semoga di 23 tahun ini semua harapan yang kita impikan terwujud, dan kita mulai untuk menggapai semua yang kamu impikan yaa sayangkuu termasuk hidupp bahagia kita bersama.</p>
-          <p>Selamat ulang tahun, sayangku Risma Agustina 💖</p>
-          <p class="sign">— Muhammad Hanif Riza Mubarak,<br>Orang dongo yang hoki ketemu ayang perfect gacor abis WHWEHHE.</p>
+        <div class="stat-item">
+          <div class="num">1</div>
+          <div class="lbl">Organisasi</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- DATE INVITATION -->
-<section id="date">
-  <div class="wrap">
-    <h2 class="title">Satu Permintaan Kecil… 💌</h2>
-    <div class="card">
-      <div class="invite-badge">Kamu diundang ke</div>
-      <div class="venue">Juliet The Selfish</div>
-      <div class="venue-detail">Bogor, Jawa Barat</div>
-      <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Juliet+The+Selfish+Bogor" target="_blank" rel="noopener">📍 Buka di Google Maps</a>
-      <p class="subtitle" style="margin-bottom:8px">Hari setelah ulang tahunmu · <strong style="color:var(--purple)">Selasa, 18 Agustus 2026</strong></p>
-      <p class="subtitle" style="margin-bottom:18px">Mulai pukul <strong style="color:var(--purple)">17.00 WIB</strong> sampai kita berdua puassss</p>
-      <p style="font-weight:300;line-height:1.9;margin-bottom:8px">
-        Sayang, di hari spesialmu ini, aku punya satu permintaan: izinkan aku merayakan harimu bersamamu.
-      </p>
-      <p style="font-weight:300;line-height:1.9;margin-bottom:18px">
-        ketik "iya", dan biarkan aku membuktikan bahwa ulang tahun ke-23-mu adalah yang paling kamu ingat seumur hidup. 💫
-      </p>
-      <ul class="plan-list">
-        <li><span class="emoji">🍽️</span><span><strong>Dinner romantis</strong> — hidangan spesial di Juliet The Selfish, ditemani dessert favoritmu.</span></li>
-        <li><span class="emoji">🥂</span><span><strong>Toast kecil-kecilan</strong> — untuk 23 tahun kamu, dan semua tahun yang akan kita lewati bersama.</span></li>
-        <li><span class="emoji">🚶</span><span><strong>Jalan santai</strong> — menyusuri sore Bogor yang sejuk sambil bercerita apa saja.</span></li>
-        <li><span class="emoji">🎁</span><span><strong>Kejutan</strong> — hadiah kecil yang cuma bisa aku berikan langsung, bukan lewat layar.</span></li>
-        <li><span class="emoji">🤳</span><span><strong>Foto-foto baru</strong> — biar galeri kenangan kita tambah panjang lagi.</span></li>
+    <div class="about-card reveal">
+      <h3>Informasi Pribadi</h3>
+      <ul class="about-info">
+        <li><span class="label">NIM</span><span class="value">105841105122</span></li>
+        <li><span class="label">Jurusan</span><span class="value">Digital Applied Accounting</span></li>
+        <li><span class="label">Universitas</span><span class="value">Universitas BSI</span></li>
+        <li><span class="label">Angkatan</span><span class="value">2022</span></li>
+        <li><span class="label">Lokasi</span><span class="value">Gorontalo, Indonesia</span></li>
+        <li><span class="label">Email</span><span class="value">Rismagustina02@gmail.com</span></li>
       </ul>
-      <p style="font-weight:600;color:var(--pink);margin-bottom:22px">Jadi… mau kan jadi teman kencanku? 🥺</p>
-      <div class="rsvp">
-        <button class="btn" onclick="rsvpYes()">Ya, aku mau! 💖</button>
-        <button class="btn ghost" onclick="rsvpMaybe()">Masih mikir dulu… 🤔</button>
-      </div>
-      <div class="rsvp-msg" id="rsvpMsg"></div>
     </div>
   </div>
 </section>
 
-<!-- CELEBRATION -->
-<section id="celebration">
-  <div class="wrap">
-    <h2 class="title">Perayaan</h2>
-    <p class="subtitle">Sekarang giliran kamu tiup lilinnya ✨</p>
-    <div class="card stage">
-      <div class="cake">
-        <div class="candle" style="left:36%"><div class="flame"></div><div class="smoke"></div></div>
-        <div class="candle" style="left:50%"><div class="flame"></div><div class="smoke"></div></div>
-        <div class="candle" style="left:64%"><div class="flame"></div><div class="smoke"></div></div>
-        <div class="cake-mid"><div class="drip" style="left:18px"></div><div class="drip" style="left:64px"></div><div class="drip" style="left:110px"></div></div>
-        <div class="cake-base"><div class="drip" style="left:24px"></div><div class="drip" style="left:88px"></div><div class="drip" style="left:152px"></div></div>
+<!-- EDUCATION -->
+<section id="education" style="background:rgba(124,58,237,.02)">
+  <div class="section-header reveal">
+    <h2>Pendidikan</h2>
+    <p>Perjalanan akademik yang telah saya tempuh</p>
+    <div class="line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot">1</div>
+      <div class="timeline-content">
+        <span class="year">2022 — Sekarang</span>
+        <h3>S1 Digital Applied Accounting</h3>
+        <p>Universitas BSI, Cibitung — Jawa Barat</p>
+        <div class="rank">Status: Aktif</div>
       </div>
-      <button class="btn gold" id="blowBtn" onclick="blowCandles()">🕯️ Tiup Lilinnya!</button>
-      <div class="cake-wish" id="cakeWish">Make a wish, sayang… 🤫✨</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot">2</div>
+      <div class="timeline-content">
+        <span class="year">2018 — 2021</span>
+        <h3>SMK Negeri 1 Limboto</h3>
+        <p>Jurusan Akuntansi & Keuangan Lembaga</p>
+        <div class="rank">Peringkat 1 di Kelas</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot">3</div>
+      <div class="timeline-content">
+        <span class="year">2015 — 2018</span>
+        <h3>SMP Negeri 2 Limboto</h3>
+        <p>Lulusan Terbaik — Peringkat 5</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot">4</div>
+      <div class="timeline-content">
+        <span class="year">2009 — 2015</span>
+        <h3>SD Negeri 68 Tootaliga</h3>
+        <p>Lulusan Terbaik — Peringkat 1</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <h2>Keahlian</h2>
+    <p>Keterampilan yang telah saya kembangkan</p>
+    <div class="line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon si-purple">📊</div>
+      <h3>Microsoft Office</h3>
+      <p>Kecakapan penggunaan Excel, Word, dan PowerPoint untuk kebutuhan akuntansi dan pelaporan.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon si-blue">💻</div>
+      <h3>Software & Aplikasi Database</h3>
+      <p>Memahami penggunaan software akuntansi dan sistem database untuk pengelolaan data keuangan.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon si-pink">📋</div>
+      <h3>Sistem Informasi Akuntansi</h3>
+      <p>Pemahaman mendalam mengenai siklus akuntansi, pelaporan keuangan, dan analisis data keuangan.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon si-green">👥</div>
+      <h3>Organisasi & Manajemen</h3>
+      <p>Kemampuan dalam pengelolaan organisasi, perencanaan, dan koordinasi kegiatan kelompok.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon si-orange">🎙️</div>
+      <h3>Public Speaking</h3>
+      <p>Kemampuan berkomunikasi dan presentasi di depan publik dengan percaya diri.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon si-blue">🤝</div>
+      <h3>Human Resource Management</h3>
+      <p>Pengetahuan dasar dalam pengelolaan sumber daya manusia, rekrutmen, dan pengembangan SDM.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:rgba(124,58,237,.02)">
+  <div class="section-header reveal">
+    <h2>Pengalaman</h2>
+    <p>Pengalaman kerja dan keorganisasian saya</p>
+    <div class="line"></div>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div class="exp-badge work">🏢 Pengalaman Kerja</div>
+      <h3>PT Daya Miffa</h3>
+      <div class="role">Accounting Staff Intern · 2021</div>
+      <ul>
+        <li>Membuat jurnal akuntansi harian berdasarkan transaksi yang terjadi</li>
+        <li>Menginput data keuangan ke dalam sistem komputer perusahaan</li>
+        <li>Menyiapkan dokumen pendukung untuk proses pelaporan keuangan</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-badge org">🎭 Organisasi</div>
+      <h3>BSI Student Executive Board</h3>
+      <div class="role">Anggota Organisasi</div>
+      <ul>
+        <li>Partisipasi aktif dalam kegiatan keorganisasian kampus</li>
+        <li>Berkontribusi dalam perencanaan dan pelaksanaan program kerja</li>
+        <li>Berkolaborasi dengan anggota lain untuk mencapai tujuan organisasi</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENT -->
+<section id="achievement">
+  <div class="section-header reveal">
+    <h2>Penghargaan</h2>
+    <p>Pencapaian yang telah saya raih</p>
+    <div class="line"></div>
+  </div>
+  <div class="achieve-card reveal">
+    <div class="achieve-icon">🏆</div>
+    <h3>Penghargaan Prestasi Akademik</h3>
+    <p>Diterima sebagai mahasiswa baru Universitas BSI berdasarkan prestasi akademik yang dicapai selama masa sekolah menengah, termasuk peringkat 1 di kelas jurusan akuntansi SMK Negeri 1 Limboto.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:rgba(124,58,237,.02)">
+  <div class="section-header reveal">
+    <h2>Hubungi Saya</h2>
+    <p>Terhubung dengan saya melalui media berikut</p>
+    <div class="line"></div>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:Rismagustina02@gmail.com" class="contact-item reveal">
+      <div class="contact-icon si-purple">📧</div>
+      <div>
+        <h4>Email</h4>
+        <p>Rismagustina02@gmail.com</p>
+      </div>
+    </a>
+    <a href="https://wa.me/895181130784" target="_blank" rel="noopener" class="contact-item reveal">
+      <div class="contact-icon si-green">💬</div>
+      <div>
+        <h4>WhatsApp</h4>
+        <p>0895-1811-30784</p>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/rismastna" target="_blank" rel="noopener" class="contact-item reveal">
+      <div class="contact-icon si-blue">🔗</div>
+      <div>
+        <h4>LinkedIn</h4>
+        <p>linkedin.com/in/rismastna</p>
+      </div>
+    </a>
+    <a href="https://www.instagram.com/rismastna" target="_blank" rel="noopener" class="contact-item reveal">
+      <div class="contact-icon si-pink">📷</div>
+      <div>
+        <h4>Instagram</h4>
+        <p>@rismastna</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="social-row">
-    <a class="social-chip" href="https://www.linkedin.com/in/rismastna" target="_blank" rel="noopener"><span class="ico">🔗</span> LinkedIn</a>
-    <a class="social-chip" href="https://www.instagram.com/rismastna" target="_blank" rel="noopener"><span class="ico">📷</span> Instagram</a>
-    <a class="social-chip" href="https://wa.me/89518113078" target="_blank" rel="noopener"><span class="ico">💬</span> WhatsApp</a>
-    <a class="social-chip" href="CV Risma Agustina.pdf" target="_blank" rel="noopener"><span class="ico">📄</span> CV</a>
-  </div>
-  Dibuat dengan <span class="heartbeat">💖</span> oleh <strong>Muhammad Hanif Riza Mubarak</strong><br>
-  untuk <strong>Risma Agustina</strong> · 17 Agustus 2026
+  <p>&copy; 2026 Risma Agustina. Dibuat dengan semangat untuk masa depan yang lebih baik.</p>
 </footer>
 
 <script>
-  // ===== Konfigurasi (bisa diedit) =====
-  var UNLOCK_DATE = new Date(2026, 7, 17, 0, 0, 0);
-  var CAPTIONS = ['Momen pertama yang tak pernah kulupa 💘', 'Senyum yang mengubah segalanya ✨', 'Kita selalu punya cerita 💫', 'Dan masih banyak lagi yang akan datang… 💍'];
-  var LOCATION_NAME = 'Juliet The Selfish';
-  var MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Juliet+The+Selfish+Bogor';
+  // NAVBAR SCROLL
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
 
-  // ===== Intro =====
-  function startExperience() {
-    document.getElementById('intro').classList.add('hidden');
-    confettiBurst(window.innerWidth / 2, window.innerHeight / 2, 220);
-    setTimeout(function () { confettiBurst(window.innerWidth / 3, window.innerHeight / 3, 120); }, 400);
-    setTimeout(function () { confettiBurst(window.innerWidth / 1.5, window.innerHeight / 2.2, 120); }, 800);
-  }
+  // MOBILE NAV TOGGLE
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function() {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { links.classList.remove('open'); });
+  });
 
-  // ===== Toast =====
-  var toastTimer;
-  function showToast(msg) {
-    var t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2600);
-  }
-
-  // ===== Confetti Canvas =====
-  var canvas = document.getElementById('confetti');
-  var ctx = canvas.getContext('2d');
-  var confettiParts = [];
-  var resize = function () { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-  resize();
-  window.addEventListener('resize', resize);
-
-  function confettiBurst(x, y, count) {
-    for (var i = 0; i < count; i++) {
-      var colors = ['#ff6fa5', '#8b5cf6', '#ffd166', '#ff8c42', '#ffc2dd', '#c9b3ff', '#4ade80'];
-      confettiParts.push({
-        x: x, y: y,
-        vx: (Math.random() - 0.5) * 14,
-        vy: -Math.random() * 13 - 3,
-        w: Math.random() * 9 + 4,
-        h: Math.random() * 7 + 3,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        rot: Math.random() * Math.PI * 2,
-        vr: (Math.random() - 0.5) * 0.35,
-        life: 1
-      });
-    }
-  }
-
-  var heartsMode = false;
-  function heartRain() {
-    var colors = ['#ff6fa5', '#ff4d8d', '#c9b3ff', '#ff9ecb'];
-    confettiParts.push({
-      x: Math.random() * canvas.width, y: -20,
-      vx: (Math.random() - 0.5) * 1.5, vy: 1.6 + Math.random() * 1.4,
-      w: 12, h: 12, color: colors[Math.floor(Math.random() * colors.length)],
-      rot: 0, vr: 0.01, life: 1, heart: true
-    });
-  }
-
-  function tickConfetti() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (heartsMode && Math.random() < 0.35) heartRain();
-    for (var i = confettiParts.length - 1; i >= 0; i--) {
-      var p = confettiParts[i];
-      p.x += p.vx; p.y += p.vy;
-      p.vy += p.heart ? 0.01 : 0.12;
-      p.rot += p.vr;
-      p.life -= p.heart ? 0.002 : 0.008;
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-      ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
-      ctx.fillStyle = p.color;
-      if (p.heart) {
-        ctx.font = '20px serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('❤️', 0, 0);
-      } else {
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+  // SCROLL REVEAL
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       }
-      ctx.restore();
-      if (p.life <= 0 || p.y > canvas.height + 40) confettiParts.splice(i, 1);
-    }
-    requestAnimationFrame(tickConfetti);
-  }
-  tickConfetti();
-
-  // ===== Balon Latar =====
-  var balloonColors = ['#ff9ecb', '#c9b3ff', '#ffd166', '#ff8c9a', '#b79cff', '#ffb3d1'];
-  for (var b = 0; b < 12; b++) {
-    var ball = document.createElement('div');
-    ball.className = 'balloon';
-    var size = 34 + Math.random() * 40;
-    ball.style.width = size + 'px';
-    ball.style.height = (size * 1.2) + 'px';
-    ball.style.left = (Math.random() * 100) + 'vw';
-    ball.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)];
-    ball.style.animationDuration = (12 + Math.random() * 16) + 's';
-    ball.style.animationDelay = (-Math.random() * 24) + 's';
-    document.body.appendChild(ball);
-  }
-
-  // ===== Lagu Ulang Tahun (Web Audio API) =====
-  var audioCtx = null;
-  var songTimer = null;
-  var songPlaying = false;
-  var SONG_LENGTH = 14;
-
-  function freq(n) {
-    return 440 * Math.pow(2, (n - 69) / 12);
-  }
-  var NOTE = {
-    G4: freq(55), A4: freq(57), B4: freq(59), C5: freq(60), D5: freq(62),
-    E5: freq(64), F5: freq(65), G5: freq(67), C4: freq(48), E4: freq(52), F4: freq(53)
-  };
-  // [not, durasi(beat), harmoni]
-  var MELODY = [
-    [NOTE.G4, 1, NOTE.E4], [NOTE.G4, 1, NOTE.E4], [NOTE.A4, 1, NOTE.F4], [NOTE.G4, 1, NOTE.E4],
-    [NOTE.C5, 2, NOTE.C4], [NOTE.B4, 2, NOTE.C4],
-    [NOTE.G4, 1, NOTE.E4], [NOTE.G4, 1, NOTE.E4], [NOTE.A4, 1, NOTE.F4], [NOTE.G4, 1, NOTE.E4],
-    [NOTE.D5, 2, NOTE.B4], [NOTE.C5, 2, NOTE.C4],
-    [NOTE.G4, 1, NOTE.E4], [NOTE.G4, 1, NOTE.E4], [NOTE.G5, 1, NOTE.G4], [NOTE.E5, 1, NOTE.C5],
-    [NOTE.C5, 1, NOTE.E4], [NOTE.B4, 1, NOTE.C4], [NOTE.A4, 2, NOTE.F4],
-    [NOTE.F5, 1, NOTE.F4], [NOTE.F5, 1, NOTE.F4], [NOTE.E5, 1, NOTE.C5], [NOTE.C5, 1, NOTE.C5],
-    [NOTE.D5, 2, NOTE.G4], [NOTE.C5, 3, NOTE.C4]
-  ];
-  var BEAT = 0.42;
-
-  function playNote(ctx, when, f, dur, vol, type) {
-    var osc = ctx.createOscillator();
-    var gain = ctx.createGain();
-    osc.type = type || 'triangle';
-    osc.frequency.setValueAtTime(f, when);
-    var lfo = ctx.createOscillator();
-    var lfoGain = ctx.createGain();
-    lfo.frequency.value = 5.5;
-    lfoGain.gain.value = 4;
-    lfo.connect(lfoGain).connect(osc.detune);
-    gain.gain.setValueAtTime(0.0001, when);
-    gain.gain.exponentialRampToValueAtTime(vol, when + 0.05);
-    gain.gain.exponentialRampToValueAtTime(0.0001, when + dur);
-    osc.connect(gain).connect(ctx.destination);
-    osc.start(when); osc.stop(when + dur + 0.05);
-    lfo.start(when); lfo.stop(when + dur + 0.05);
-  }
-
-  function toggleSong() {
-    if (songPlaying) { stopSong(); return; }
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    audioCtx.resume();
-    var t = audioCtx.currentTime + 0.15;
-    var total = 0;
-    MELODY.forEach(function (m) {
-      var dur = m[1] * BEAT;
-      playNote(audioCtx, t, m[0], dur, 0.22, 'triangle');
-      playNote(audioCtx, t, m[2], dur, 0.12, 'sine');
-      t += dur;
-      total += dur;
     });
-    songPlaying = true;
-    document.getElementById('song').classList.add('playing');
-    document.getElementById('songBtn').textContent = '⏸️ Hentikan Lagu';
-    document.getElementById('songStatus').textContent = '🎶 Selamat ulang tahun, selamat ulang tahun… (piano)';
-    var start = Date.now();
-    songTimer = setInterval(function () {
-      var p = Math.min(1, (Date.now() - start) / (total * 1000));
-      document.getElementById('songProgress').style.width = (p * 100) + '%';
-      if (p >= 1) {
-        clearInterval(songTimer);
-        stopSong();
-        confettiBurst(window.innerWidth / 2, document.getElementById('song').offsetTop + 100, 150);
+  }, { threshold: 0.12 });
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // COUNTER ANIMATION
+  var counters = document.querySelectorAll('.stat-item .num');
+  var counterObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var target = parseInt(el.textContent);
+        var current = 0;
+        var increment = Math.ceil(target / 40);
+        var timer = setInterval(function() {
+          current += increment;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current + (el.dataset.suffix || '');
+        }, 30);
+        counterObs.unobserve(el);
       }
-    }, 100);
-  }
-
-  function stopSong() {
-    clearInterval(songTimer);
-    songPlaying = false;
-    document.getElementById('song').classList.remove('playing');
-    document.getElementById('songBtn').textContent = '▶️ Putar Lagu Ulang Tahun';
-    document.getElementById('songStatus').textContent = '🎵 Selamat ulang tahun… (piano)';
-    document.getElementById('songProgress').style.width = '0%';
-  }
-
-  // ===== Galeri =====
-  var galleryIndex = 0;
-  var galleryTimer;
-  var dotsEl = document.getElementById('dots');
-  var imgs = document.querySelectorAll('.gallery-frame img');
-  for (var d = 0; d < imgs.length; d++) {
-    var dot = document.createElement('div');
-    dot.className = 'dot' + (d === 0 ? ' active' : '');
-    dot.setAttribute('data-i', d);
-    dot.onclick = (function (i) { return function () { setGallery(i); }; })(d);
-    dotsEl.appendChild(dot);
-  }
-  var dots = document.querySelectorAll('.dot');
-  document.getElementById('galleryCaption').textContent = CAPTIONS[0];
-
-  function setGallery(i) {
-    galleryIndex = (i + imgs.length) % imgs.length;
-    imgs.forEach(function (img, idx) { img.classList.toggle('active', idx === galleryIndex); });
-    dots.forEach(function (d, idx) { d.classList.toggle('active', idx === galleryIndex); });
-    document.getElementById('galleryCaption').textContent = CAPTIONS[galleryIndex];
-  }
-  function moveGallery(dir) { setGallery(galleryIndex + dir); resetGalleryTimer(); }
-  function resetGalleryTimer() {
-    clearInterval(galleryTimer);
-    galleryTimer = setInterval(function () { setGallery(galleryIndex + 1); }, 4000);
-  }
-  resetGalleryTimer();
-  var galleryCard = document.querySelector('#gallery .gallery');
-  galleryCard.addEventListener('mouseenter', function () { clearInterval(galleryTimer); });
-  galleryCard.addEventListener('mouseleave', resetGalleryTimer);
-
-  // ===== Pesan Rahasia =====
-  var isUnlocked = false;
-  var letterOpened = false;
-
-  function checkDate() {
-    var now = new Date();
-    if (now >= UNLOCK_DATE) {
-      unlockSecret();
-    }
-    updateCountdown();
-  }
-
-  function updateCountdown() {
-    var now = new Date();
-    var diff = UNLOCK_DATE - now;
-    if (diff <= 0) return;
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    var s = Math.floor((diff % 60000) / 1000);
-    var pad = function (n) { return String(n).padStart(2, '0'); };
-    document.getElementById('cdD').textContent = pad(d);
-    document.getElementById('cdH').textContent = pad(h);
-    document.getElementById('cdM').textContent = pad(m);
-    document.getElementById('cdS').textContent = pad(s);
-  }
-
-  function unlockSecret() {
-    if (isUnlocked) return;
-    isUnlocked = true;
-    document.getElementById('secretCard').classList.add('unlocked');
-    document.getElementById('secret').classList.add('unlocked');
-    var cd = document.getElementById('countdown');
-    if (cd) cd.style.display = 'none';
-    var lockArea = document.querySelector('#secretCard .locked-area');
-    if (lockArea) lockArea.style.display = 'none';
-  }
-
-  function tryUnlock() {
-    var now = new Date();
-    if (now < UNLOCK_DATE) {
-      var btn = document.getElementById('unlockBtn');
-      btn.classList.remove('shake');
-      void btn.offsetWidth;
-      btn.classList.add('shake');
-      showToast('Belum waktunya, sayang 💛 Sabar sampai 17 Agustus ya…');
-      confettiBurst(0, 0, 0);
-      return;
-    }
-    unlockSecret();
-    openLetter();
-  }
-
-  function openLetter() {
-    if (!letterOpened) {
-      letterOpened = true;
-      document.getElementById('envelope').classList.add('open');
-      setTimeout(function () {
-        document.getElementById('letterBox').classList.add('show');
-        heartsMode = true;
-        setTimeout(function () { heartsMode = false; }, 6000);
-        confettiBurst(window.innerWidth / 2, window.innerHeight / 2, 200);
-      }, 900);
-    }
-  }
-
-  // ===== RSVP Kencan =====
-  function rsvpYes() {
-    var msg = document.getElementById('rsvpMsg');
-    msg.innerHTML = 'Aku tahu kamu pasti bilang iya 😍 Sampai jumpa di Juliet The Selfish, 17 Agustus 2026! Aku siapkan yang terbaik untukmu 💖';
-    heartsMode = true;
-    for (var i = 0; i < 30; i++) heartRain();
-    setTimeout(function () { heartsMode = false; }, 4000);
-    confettiBurst(window.innerWidth / 2, window.innerHeight / 2, 180);
-  }
-
-  function rsvpMaybe() {
-    var msg = document.getElementById('rsvpMsg');
-    msg.innerHTML = 'Hmm… aku akan menunggu jawabanmu dengan sabar. Tapi ingat ya, aku sudah siapkan surprise. Jangan lama-lama mikirnya 🥺💘';
-    showToast('Aku tunggu jawabannya ya, sayang 💌');
-  }
-
-  // ===== Tiup Lilin =====
-  var candlesBlown = false;
-  function blowCandles() {
-    if (candlesBlown) return;
-    candlesBlown = true;
-    var flames = document.querySelectorAll('.flame');
-    var smokes = document.querySelectorAll('.smoke');
-    flames.forEach(function (f) { f.classList.add('out'); });
-    smokes.forEach(function (s) { s.classList.add('puff'); });
-    document.getElementById('blowBtn').textContent = '🎉 Lilinnya sudah padam!';
-    document.getElementById('cakeWish').textContent = 'Semoga semua impianmu di usia 23 terwujud, sayang! 🕊️';
-    confettiBurst(window.innerWidth / 2, window.innerHeight / 2.4, 260);
-    setTimeout(function () { confettiBurst(window.innerWidth / 2, window.innerHeight / 2, 180); }, 500);
-    setTimeout(function () { confettiBurst(window.innerWidth / 2, window.innerHeight / 2.6, 160); }, 1000);
-  }
-
-  // ===== Init =====
-  checkDate();
-  setInterval(checkDate, 1000);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(c) { counterObs.observe(c); });
 </script>
 </body>
 </html>
