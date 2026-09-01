@@ -6,189 +6,488 @@
 <title>Risma Agustina — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --primary:#7c3aed;
-    --primary-light:#a78bfa;
-    --primary-dark:#4c1d95;
-    --accent:#ec4899;
-    --bg:#fafafa;
-    --surface:#ffffff;
-    --text:#1e1b4b;
-    --text-muted:#6b7280;
-    --border:#e5e7eb;
-    --gradient:linear-gradient(135deg,var(--primary),var(--accent));
-    --shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(124,58,237,.08);
-    --shadow-lg:0 4px 12px rgba(0,0,0,.08),0 16px 40px rgba(124,58,237,.12);
-    --radius:16px;
-    --radius-sm:10px;
+
+  :root {
+    --c-bg: #f8f7f4;
+    --c-surface: #ffffff;
+    --c-ink: #1a1a1a;
+    --c-ink-light: #555;
+    --c-muted: #8a8a8a;
+    --c-border: #e8e6e1;
+    --c-green: #2d6a4f;
+    --c-green-light: #52b788;
+    --c-green-pale: #d8f3dc;
+    --c-accent: #40916c;
+    --c-warm: #d4a373;
+    --c-warm-light: #fefae0;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --ease: cubic-bezier(.4, 0, .2, 1);
   }
-  html{scroll-behavior:smooth;font-size:16px}
-  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
-  h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.25}
-  img{max-width:100%;display:block}
-  a{text-decoration:none;color:inherit}
 
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
-  nav.scrolled{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);box-shadow:0 1px 8px rgba(0,0,0,.06)}
-  .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .nav-links{display:flex;gap:28px;list-style:none}
-  .nav-links a{font-size:.88rem;font-weight:500;color:var(--text-muted);transition:color .25s;position:relative}
-  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gradient);border-radius:2px;transition:width .3s}
-  .nav-links a:hover{color:var(--primary)}
-  .nav-links a:hover::after{width:100%}
-  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
-  .nav-toggle span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;border-radius:2px;transition:all .3s}
-
-  /* HERO */
-  .hero{min-height:100vh;display:flex;align-items:center;padding:100px 24px 60px}
-  .hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .hero-text{opacity:0;transform:translateY(30px);animation:fadeUp .8s .3s forwards}
-  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.08);color:var(--primary);padding:8px 18px;border-radius:50px;font-size:.82rem;font-weight:600;margin-bottom:20px;letter-spacing:.3px}
-  .hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:pulse-dot 2s infinite}
-  @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
-  .hero h1{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:16px}
-  .hero h1 .gradient-text{background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .hero p{font-size:1.05rem;color:var(--text-muted);max-width:480px;margin-bottom:32px;line-height:1.8}
-  .hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;border:none;transition:all .3s}
-  .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.3)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,58,237,.4)}
-  .btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary-light)}
-  .btn-outline:hover{background:rgba(124,58,237,.06);transform:translateY(-2px)}
-  .hero-image{display:flex;justify-content:center;opacity:0;transform:translateY(30px);animation:fadeUp .8s .5s forwards}
-  .hero-avatar{width:320px;height:320px;border-radius:50%;object-fit:cover;border:5px solid var(--surface);box-shadow:var(--shadow-lg);transition:transform .4s}
-  .hero-avatar:hover{transform:scale(1.03)}
-  .hero-avatar-ring{width:340px;height:340px;border-radius:50%;background:var(--gradient);padding:4px;display:flex;align-items:center;justify-content:center}
-  @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-
-  /* SECTION */
-  section{padding:80px 24px}
-  .section-header{text-align:center;margin-bottom:50px}
-  .section-header h2{font-size:clamp(1.7rem,3.5vw,2.4rem);margin-bottom:10px}
-  .section-header p{color:var(--text-muted);max-width:520px;margin:0 auto;font-size:.95rem}
-  .section-header .line{width:48px;height:3px;background:var(--gradient);border-radius:3px;margin:12px auto 0}
-
-  /* ABOUT */
-  .about-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
-  .about-card{background:var(--surface);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);border:1px solid var(--border)}
-  .about-card h3{font-size:1.15rem;margin-bottom:14px;color:var(--primary)}
-  .about-card p{color:var(--text-muted);font-size:.93rem;line-height:1.8}
-  .about-info{list-style:none;margin-top:20px}
-  .about-info li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem}
-  .about-info li:last-child{border:none}
-  .about-info .label{color:var(--text-muted);min-width:90px}
-  .about-info .value{font-weight:500;color:var(--text)}
-  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
-  .stat-item{text-align:center;padding:20px 12px;background:rgba(124,58,237,.04);border-radius:var(--radius-sm)}
-  .stat-item .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--primary)}
-  .stat-item .lbl{font-size:.78rem;color:var(--text-muted);margin-top:4px}
-
-  /* EDUCATION */
-  .timeline{max-width:700px;margin:0 auto;position:relative}
-  .timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--primary-light),var(--accent))}
-  .timeline-item{display:flex;gap:24px;margin-bottom:32px;position:relative}
-  .timeline-dot{width:42px;height:42px;border-radius:50%;background:var(--surface);border:3px solid var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-size:.85rem;font-weight:700;color:var(--primary)}
-  .timeline-content{background:var(--surface);border-radius:var(--radius-sm);padding:22px 26px;box-shadow:var(--shadow);border:1px solid var(--border);flex:1;transition:transform .3s,box-shadow .3s}
-  .timeline-content:hover{transform:translateX(6px);box-shadow:var(--shadow-lg)}
-  .timeline-content .year{font-size:.78rem;font-weight:600;color:var(--primary);background:rgba(124,58,237,.08);padding:4px 12px;border-radius:50px;display:inline-block;margin-bottom:8px}
-  .timeline-content h3{font-size:1rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:4px}
-  .timeline-content p{font-size:.88rem;color:var(--text-muted)}
-  .timeline-content .rank{font-size:.82rem;color:var(--accent);font-weight:600;margin-top:6px}
-
-  /* SKILLS */
-  .skills-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-  .skill-card{background:var(--surface);border-radius:var(--radius-sm);padding:26px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;cursor:default}
-  .skill-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-  .skill-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px}
-  .skill-card h3{font-size:.95rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
-  .skill-card p{font-size:.84rem;color:var(--text-muted);line-height:1.6}
-  .si-purple{background:rgba(124,58,237,.1);color:var(--primary)}
-  .si-pink{background:rgba(236,72,153,.1);color:var(--accent)}
-  .si-blue{background:rgba(59,130,246,.1);color:#3b82f6}
-  .si-green{background:rgba(16,185,129,.1);color:#10b981}
-  .si-orange{background:rgba(245,158,11,.1);color:#f59e0b}
-
-  /* EXPERIENCE */
-  .exp-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .exp-card{background:var(--surface);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .3s,box-shadow .3s}
-  .exp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-  .exp-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.78rem;font-weight:600;margin-bottom:16px}
-  .exp-badge.work{background:rgba(124,58,237,.08);color:var(--primary)}
-  .exp-badge.org{background:rgba(236,72,153,.08);color:var(--accent)}
-  .exp-card h3{font-size:1.05rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:4px}
-  .exp-card .role{font-size:.85rem;color:var(--text-muted);margin-bottom:12px}
-  .exp-card ul{list-style:none}
-  .exp-card ul li{font-size:.88rem;color:var(--text-muted);padding:5px 0;padding-left:16px;position:relative;line-height:1.6}
-  .exp-card ul li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--primary-light)}
-
-  /* ACHIEVEMENT */
-  .achieve-card{max-width:600px;margin:0 auto;background:var(--surface);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);border:1px solid var(--border);text-align:center;position:relative;overflow:hidden}
-  .achieve-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient)}
-  .achieve-icon{font-size:3rem;margin-bottom:16px}
-  .achieve-card h3{font-size:1.1rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
-  .achieve-card p{color:var(--text-muted);font-size:.9rem}
-
-  /* CONTACT */
-  .contact-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .contact-item{background:var(--surface);border-radius:var(--radius-sm);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;align-items:center;gap:16px;transition:transform .3s,box-shadow .3s}
-  .contact-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-  .contact-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-  .contact-item h4{font-size:.85rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:2px}
-  .contact-item p{font-size:.82rem;color:var(--text-muted);word-break:break-all}
-  .contact-item a{color:var(--primary);font-weight:500;transition:color .2s}
-  .contact-item a:hover{color:var(--accent)}
-
-  /* FOOTER */
-  footer{background:var(--text);color:rgba(255,255,255,.6);text-align:center;padding:40px 24px;font-size:.85rem}
-  footer a{color:var(--primary-light);transition:color .2s}
-  footer a:hover{color:#fff}
-
-  /* SCROLL ANIMATION */
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-
-  /* RESPONSIVE */
-  @media(max-width:768px){
-    .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:24px 0;gap:18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-    .nav-links.open{display:flex}
-    .nav-toggle{display:block}
-    .hero-inner{grid-template-columns:1fr;text-align:center;gap:30px}
-    .hero-avatar-ring{width:240px;height:240px}
-    .hero-avatar{width:230px;height:230px}
-    .hero p{margin:0 auto 32px}
-    .hero-buttons{justify-content:center}
-    .about-grid{grid-template-columns:1fr}
-    .about-stats{grid-template-columns:repeat(3,1fr)}
-    .exp-grid{grid-template-columns:1fr}
-    .contact-grid{grid-template-columns:1fr}
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--c-bg);
+    color: var(--c-ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
   }
-  @media(max-width:480px){
-    .hero h1{font-size:1.8rem}
-    .about-stats{grid-template-columns:1fr}
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
+
+  /* --- NAV --- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+    padding: 20px 0;
+    transition: padding .4s var(--ease), background .4s var(--ease), backdrop-filter .4s var(--ease);
+  }
+  .nav.scrolled {
+    padding: 12px 0;
+    background: rgba(248,247,244,.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .nav-inner {
+    max-width: 1120px; margin: 0 auto; padding: 0 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 1.15rem;
+    letter-spacing: -.5px;
+  }
+  .nav-logo span { color: var(--c-green); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: .85rem; font-weight: 500; color: var(--c-muted);
+    transition: color .25s var(--ease); position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+    background: var(--c-green); transition: width .3s var(--ease);
+  }
+  .nav-links a:hover { color: var(--c-ink); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 28px; height: 20px; position: relative;
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
+    display: block; width: 100%; height: 2px; background: var(--c-ink);
+    border-radius: 2px; transition: all .3s var(--ease); position: absolute; left: 0;
+  }
+  .nav-toggle span { top: 50%; transform: translateY(-50%); }
+  .nav-toggle span::before { content: ''; top: -8px; }
+  .nav-toggle span::after { content: ''; bottom: -8px; }
+
+  /* --- HERO --- */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 32px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, var(--c-green-pale) 0%, transparent 70%);
+    opacity: .6; pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1120px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 50px;
+    background: var(--c-green-pale); color: var(--c-green);
+    font-size: .78rem; font-weight: 600; letter-spacing: .3px;
+    margin-bottom: 24px;
+    opacity: 0; transform: translateY(16px);
+    animation: slideIn .7s .2s var(--ease) forwards;
+  }
+  .hero-badge .pulse {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--c-green-light);
+    animation: pulse 2.2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .4; transform: scale(.8); }
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 5.5vw, 4rem);
+    font-weight: 700; letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    opacity: 0; transform: translateY(20px);
+    animation: slideIn .8s .35s var(--ease) forwards;
+  }
+  .hero h1 em {
+    font-style: normal; position: relative;
+    background: linear-gradient(135deg, var(--c-green), var(--c-green-light));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 1.05rem; color: var(--c-ink-light);
+    max-width: 520px; margin-bottom: 36px; line-height: 1.85;
+    opacity: 0; transform: translateY(20px);
+    animation: slideIn .8s .5s var(--ease) forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0; transform: translateY(20px);
+    animation: slideIn .8s .65s var(--ease) forwards;
+  }
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px; border-radius: 50px;
+    font-family: var(--font-display); font-size: .88rem; font-weight: 600;
+    cursor: pointer; border: none;
+    transition: all .3s var(--ease);
+  }
+  .btn-primary {
+    background: var(--c-ink); color: #fff;
+    box-shadow: 0 2px 12px rgba(26,26,26,.2);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26,26,26,.25);
+  }
+  .btn-ghost {
+    background: transparent; color: var(--c-ink);
+    border: 1.5px solid var(--c-border);
+  }
+  .btn-ghost:hover {
+    background: var(--c-ink); color: #fff; border-color: var(--c-ink);
+    transform: translateY(-2px);
+  }
+
+  .hero-visual {
+    position: relative; z-index: 1;
+    opacity: 0; transform: translateY(30px) scale(.96);
+    animation: slideUp .9s .4s var(--ease) forwards;
+  }
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .hero-photo-wrap {
+    position: relative; width: 360px; height: 400px; margin: 0 auto;
+  }
+  .hero-photo-wrap::before {
+    content: ''; position: absolute; inset: -8px;
+    border-radius: 24px 24px 80px 24px;
+    background: linear-gradient(135deg, var(--c-green-pale), var(--c-warm-light));
+    z-index: -1;
+  }
+  .hero-photo-wrap::after {
+    content: ''; position: absolute; top: -16px; right: -16px;
+    width: 100px; height: 100px; border-radius: 50%;
+    background: var(--c-green-pale); z-index: -2;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .hero-photo {
+    width: 100%; height: 100%; object-fit: cover;
+    border-radius: 24px 24px 80px 24px;
+  }
+  .hero-float-card {
+    position: absolute; bottom: -20px; left: -30px;
+    background: var(--c-surface); border-radius: var(--radius);
+    padding: 14px 20px; box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    display: flex; align-items: center; gap: 12px;
+    animation: float 5s 1s ease-in-out infinite;
+  }
+  .hero-float-card .icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--c-green-pale); display: flex;
+    align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .hero-float-card .text { font-size: .78rem; }
+  .hero-float-card .text strong { display: block; font-size: .88rem; }
+
+  /* --- SECTION BASE --- */
+  section { padding: 100px 32px; }
+  .sec-header { text-align: center; margin-bottom: 60px; }
+  .sec-header h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700; letter-spacing: -1px; margin-bottom: 12px;
+  }
+  .sec-header p { color: var(--c-muted); font-size: .95rem; max-width: 500px; margin: 0 auto; }
+  .sec-header .sep {
+    width: 40px; height: 3px; border-radius: 3px;
+    background: var(--c-green); margin: 16px auto 0;
+  }
+
+  /* --- ABOUT --- */
+  .about { background: var(--c-surface); }
+  .about-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+  }
+  .about-text p {
+    font-size: .95rem; color: var(--c-ink-light);
+    margin-bottom: 16px; line-height: 1.85;
+  }
+  .about-text .highlight {
+    font-family: var(--font-display); font-weight: 600;
+    color: var(--c-green); font-size: 1.05rem;
+  }
+  .about-meta {
+    background: var(--c-bg); border-radius: var(--radius);
+    padding: 32px; border: 1px solid var(--c-border);
+  }
+  .about-meta h3 {
+    font-size: 1rem; margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+  }
+  .meta-list { list-style: none; }
+  .meta-list li {
+    display: flex; gap: 14px; padding: 11px 0;
+    border-bottom: 1px solid var(--c-border);
+    font-size: .88rem;
+  }
+  .meta-list li:last-child { border: none; }
+  .meta-list .mlabel { color: var(--c-muted); min-width: 80px; flex-shrink: 0; }
+  .meta-list .mval { font-weight: 500; }
+  .about-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+  .about-tags span {
+    padding: 6px 14px; border-radius: 50px; font-size: .78rem; font-weight: 500;
+    background: var(--c-green-pale); color: var(--c-green);
+  }
+
+  /* --- EXPERIENCE --- */
+  .exp-list { max-width: 800px; margin: 0 auto; }
+  .exp-item {
+    display: grid; grid-template-columns: 180px 1fr; gap: 32px;
+    padding: 36px 0; border-bottom: 1px solid var(--c-border);
+    position: relative;
+  }
+  .exp-item:last-child { border: none; }
+  .exp-date {
+    font-size: .82rem; font-weight: 600; color: var(--c-muted);
+    padding-top: 4px; white-space: nowrap;
+  }
+  .exp-body {}
+  .exp-tag {
+    display: inline-block; padding: 4px 12px; border-radius: 50px;
+    font-size: .72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .5px; margin-bottom: 10px;
+  }
+  .exp-tag.work { background: var(--c-green-pale); color: var(--c-green); }
+  .exp-tag.lab { background: #e0f2fe; color: #0369a1; }
+  .exp-body h3 {
+    font-size: 1.1rem; font-family: var(--font-display); font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .exp-body .company { font-size: .88rem; color: var(--c-accent); font-weight: 500; margin-bottom: 4px; }
+  .exp-body .location { font-size: .8rem; color: var(--c-muted); margin-bottom: 14px; }
+  .exp-body ul { list-style: none; }
+  .exp-body ul li {
+    font-size: .88rem; color: var(--c-ink-light);
+    padding: 5px 0 5px 20px; position: relative; line-height: 1.7;
+  }
+  .exp-body ul li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c-green-light);
+  }
+
+  /* --- EDUCATION --- */
+  .edu-card {
+    max-width: 700px; margin: 0 auto;
+    background: var(--c-surface); border-radius: 16px;
+    padding: 40px; box-shadow: 0 1px 4px rgba(0,0,0,.04), 0 8px 32px rgba(0,0,0,.04);
+    border: 1px solid var(--c-border);
+    display: flex; gap: 28px; align-items: flex-start;
+  }
+  .edu-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: var(--c-green-pale); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+  .edu-info h3 { font-size: 1.15rem; margin-bottom: 4px; }
+  .edu-info .dept { font-size: .9rem; color: var(--c-green); font-weight: 500; margin-bottom: 2px; }
+  .edu-info .loc { font-size: .82rem; color: var(--c-muted); margin-bottom: 14px; }
+  .edu-info .gpa {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 50px;
+    background: var(--c-warm-light); color: #92400e;
+    font-size: .82rem; font-weight: 600;
+  }
+
+  /* --- ORG --- */
+  .org-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .org-card {
+    background: var(--c-surface); border-radius: var(--radius);
+    padding: 28px; border: 1px solid var(--c-border);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .org-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,.06); }
+  .org-card .org-type {
+    font-size: .72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .5px; color: var(--c-green); margin-bottom: 10px;
+  }
+  .org-card h3 { font-size: 1rem; margin-bottom: 2px; }
+  .org-card .org-role { font-size: .82rem; color: var(--c-muted); margin-bottom: 12px; }
+  .org-card ul { list-style: none; }
+  .org-card ul li {
+    font-size: .84rem; color: var(--c-ink-light);
+    padding: 4px 0 4px 16px; position: relative; line-height: 1.65;
+  }
+  .org-card ul li::before {
+    content: '→'; position: absolute; left: 0; color: var(--c-green-light);
+    font-size: .75rem; top: 6px;
+  }
+
+  /* --- PROJECTS --- */
+  .proj-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .proj-card {
+    background: var(--c-surface); border-radius: var(--radius);
+    padding: 28px; border: 1px solid var(--c-border);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+    position: relative; overflow: hidden;
+  }
+  .proj-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--c-green), var(--c-green-light));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s var(--ease);
+  }
+  .proj-card:hover::before { transform: scaleX(1); }
+  .proj-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,.06); }
+  .proj-card .proj-year {
+    font-size: .72rem; font-weight: 600; color: var(--c-muted);
+    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px;
+  }
+  .proj-card h3 { font-size: .98rem; margin-bottom: 8px; }
+  .proj-card p { font-size: .84rem; color: var(--c-ink-light); line-height: 1.7; }
+
+  /* --- SKILLS --- */
+  .skills { background: var(--c-surface); }
+  .skill-row {
+    max-width: 600px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+  }
+  .skill-chip {
+    padding: 12px 24px; border-radius: 50px;
+    background: var(--c-bg); border: 1px solid var(--c-border);
+    font-size: .88rem; font-weight: 500;
+    transition: all .3s var(--ease); cursor: default;
+  }
+  .skill-chip:hover {
+    background: var(--c-green); color: #fff;
+    border-color: var(--c-green); transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(45,106,79,.2);
+  }
+
+  /* --- CONTACT --- */
+  .contact-row { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact-card {
+    background: var(--c-surface); border-radius: var(--radius);
+    padding: 24px; border: 1px solid var(--c-border);
+    display: flex; align-items: center; gap: 16px;
+    transition: all .3s var(--ease);
+  }
+  .contact-card:hover {
+    transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    border-color: var(--c-green-light);
+  }
+  .cc-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--c-green-pale); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .cc-text h4 { font-size: .82rem; font-weight: 600; margin-bottom: 2px; }
+  .cc-text p { font-size: .8rem; color: var(--c-muted); word-break: break-all; }
+  .cc-text a { color: var(--c-green); font-weight: 500; transition: color .2s; }
+  .cc-text a:hover { color: var(--c-ink); }
+
+  /* --- FOOTER --- */
+  footer {
+    text-align: center; padding: 48px 32px;
+    border-top: 1px solid var(--c-border);
+    color: var(--c-muted); font-size: .82rem;
+  }
+  footer a { color: var(--c-green); transition: color .2s; }
+  footer a:hover { color: var(--c-ink); }
+
+  /* --- REVEAL ANIMATION --- */
+  .r {
+    opacity: 0;
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+  }
+  .r.from-bottom { transform: translateY(40px); }
+  .r.from-left { transform: translateX(-40px); }
+  .r.from-right { transform: translateX(40px); }
+  .r.from-scale { transform: scale(.92); }
+  .r.show { opacity: 1; transform: none; }
+  .r.d1 { transition-delay: .08s; }
+  .r.d2 { transition-delay: .16s; }
+  .r.d3 { transition-delay: .24s; }
+  .r.d4 { transition-delay: .32s; }
+  .r.d5 { transition-delay: .4s; }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; }
+    .hero-photo-wrap { width: 280px; height: 320px; }
+    .hero-float-card { left: 10px; bottom: -10px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .org-grid { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .contact-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-photo-wrap { width: 240px; height: 280px; }
+    .hero-float-card { display: none; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 56px; left: 0; right: 0;
+      background: rgba(248,247,244,.96); backdrop-filter: blur(20px);
+      padding: 24px; gap: 20px; align-items: center;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .nav-toggle { display: block; }
+    .edu-card { flex-direction: column; }
+    .sec-header h2 { font-size: 1.6rem; }
   }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="navbar">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">RA.</a>
+    <a href="#hero" class="nav-logo"><span>r</span>isma.</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Beranda</a></li>
       <li><a href="#about">Tentang</a></li>
-      <li><a href="#education">Pendidikan</a></li>
-      <li><a href="#skills">Keahlian</a></li>
       <li><a href="#experience">Pengalaman</a></li>
+      <li><a href="#education">Pendidikan</a></li>
+      <li><a href="#org">Organisasi</a></li>
+      <li><a href="#projects">Proyek</a></li>
       <li><a href="#contact">Kontak</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
+      <span></span>
     </button>
   </div>
 </nav>
@@ -196,252 +495,276 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-tag"><span class="dot"></span> Sedia untuk Kolaborasi</div>
-      <h1>Halo, saya<br><span class="gradient-text">Risma Agustina</span></h1>
-      <p>Mahasiswa S1 Digital Applied Accounting di Universitas BSI dengan minat di bidang akuntansi, sumber daya manusia, dan manajemen.</p>
-      <div class="hero-buttons">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse"></span>
+        Open to opportunities
+      </div>
+      <h1>Halo, saya<br><em>Risma Agustina</em></h1>
+      <p>Mahasiswa Silvikultur IPB University yang passionate di bidang riset lingkungan, analisis data, dan pengembangan solusi berbasis data untuk keberlanjutan hutan.</p>
+      <div class="hero-actions">
         <a href="CV Risma Agustina.pdf" target="_blank" rel="noopener" class="btn btn-primary">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           Lihat CV
         </a>
-        <a href="#contact" class="btn btn-outline">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Hubungi Saya
-        </a>
+        <a href="#contact" class="btn btn-ghost">Hubungi Saya</a>
       </div>
     </div>
-    <div class="hero-image">
-      <div class="hero-avatar-ring">
-        <img class="hero-avatar" src="fotorisma.jpeg" alt="Risma Agustina">
+    <div class="hero-visual">
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="fotorisma.jpeg" alt="Risma Agustina">
+        <div class="hero-float-card">
+          <div class="icon">🌱</div>
+          <div class="text">
+            <strong>Silvikultur</strong>
+            IPB University
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="section-header reveal">
+<section class="about" id="about">
+  <div class="sec-header r from-bottom">
     <h2>Tentang Saya</h2>
-    <p>Lebih mengenal siapa Risma Agustina</p>
-    <div class="line"></div>
+    <p>Lebih mengenal siapa Risma</p>
+    <div class="sep"></div>
   </div>
   <div class="about-grid">
-    <div class="about-card reveal">
-      <h3>Profil Singkat</h3>
-      <p>Saya adalah mahasiswa aktif program studi Digital Applied Accounting di Universitas BSI Kampus Cibitung. Memiliki pengalaman magang sebagai Accounting Staff di PT Daya Miffa, serta aktif dalam organisasi BSI Student Executive Board. Berkomitmen untuk terus belajar dan berkembang di bidang akuntansi dan manajemen sumber daya manusia.</p>
-      <div class="about-stats">
-        <div class="stat-item">
-          <div class="num">4+</div>
-          <div class="lbl">Tahun Pendidikan</div>
-        </div>
-        <div class="stat-item">
-          <div class="num">1</div>
-          <div class="lbl">Pengalaman Magang</div>
-        </div>
-        <div class="stat-item">
-          <div class="num">1</div>
-          <div class="lbl">Organisasi</div>
-        </div>
+    <div class="about-text r from-left">
+      <p class="highlight">Fokus riset lingkungan & analisis data untuk keberlanjutan hutan</p>
+      <p>Saya adalah mahasiswa Silvikultur di IPB University dengan IPK 3.58/4.00. Berpengalaman melakukan penilaian cadangan karbon Above-Ground Biomass (AGB) di Taman Nasional Gunung Halimun Salak bersama JIFPRO, serta aktif sebagai Asisten Praktikum Silvikultur.</p>
+      <p>Dikenal sebagai pribadi yang detail-oriented, adaptif, dan proaktif dalam mendorong efisiensi operasional dan hasil kerja berkualitas tinggi.</p>
+      <div class="about-tags">
+        <span>Riset Lingkungan</span>
+        <span>Analisis Data</span>
+        <span>Konservasi Hutan</span>
+        <span>Laporan Analitis</span>
       </div>
     </div>
-    <div class="about-card reveal">
-      <h3>Informasi Pribadi</h3>
-      <ul class="about-info">
-        <li><span class="label">NIM</span><span class="value">105841105122</span></li>
-        <li><span class="label">Jurusan</span><span class="value">Digital Applied Accounting</span></li>
-        <li><span class="label">Universitas</span><span class="value">Universitas BSI</span></li>
-        <li><span class="label">Angkatan</span><span class="value">2022</span></li>
-        <li><span class="label">Lokasi</span><span class="value">Gorontalo, Indonesia</span></li>
-        <li><span class="label">Email</span><span class="value">Rismagustina02@gmail.com</span></li>
+    <div class="about-meta r from-right">
+      <h3>📋 Informasi Pribadi</h3>
+      <ul class="meta-list">
+        <li><span class="mlabel">Universitas</span><span class="mval">IPB University</span></li>
+        <li><span class="mlabel">Program</span><span class="mval">S1 Silvikultur</span></li>
+        <li><span class="mlabel">IPK</span><span class="mval">3.58 / 4.00</span></li>
+        <li><span class="mlabel">Lokasi</span><span class="mval">Bogor, Jawa Barat</span></li>
+        <li><span class="mlabel">Email</span><span class="mval">rismagustina4@gmail.com</span></li>
       </ul>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education" style="background:rgba(124,58,237,.02)">
-  <div class="section-header reveal">
-    <h2>Pendidikan</h2>
-    <p>Perjalanan akademik yang telah saya tempuh</p>
-    <div class="line"></div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-dot">1</div>
-      <div class="timeline-content">
-        <span class="year">2022 — Sekarang</span>
-        <h3>S1 Digital Applied Accounting</h3>
-        <p>Universitas BSI, Cibitung — Jawa Barat</p>
-        <div class="rank">Status: Aktif</div>
-      </div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot">2</div>
-      <div class="timeline-content">
-        <span class="year">2018 — 2021</span>
-        <h3>SMK Negeri 1 Limboto</h3>
-        <p>Jurusan Akuntansi & Keuangan Lembaga</p>
-        <div class="rank">Peringkat 1 di Kelas</div>
-      </div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot">3</div>
-      <div class="timeline-content">
-        <span class="year">2015 — 2018</span>
-        <h3>SMP Negeri 2 Limboto</h3>
-        <p>Lulusan Terbaik — Peringkat 5</p>
-      </div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-dot">4</div>
-      <div class="timeline-content">
-        <span class="year">2009 — 2015</span>
-        <h3>SD Negeri 68 Tootaliga</h3>
-        <p>Lulusan Terbaik — Peringkat 1</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header reveal">
-    <h2>Keahlian</h2>
-    <p>Keterampilan yang telah saya kembangkan</p>
-    <div class="line"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <div class="skill-icon si-purple">📊</div>
-      <h3>Microsoft Office</h3>
-      <p>Kecakapan penggunaan Excel, Word, dan PowerPoint untuk kebutuhan akuntansi dan pelaporan.</p>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon si-blue">💻</div>
-      <h3>Software & Aplikasi Database</h3>
-      <p>Memahami penggunaan software akuntansi dan sistem database untuk pengelolaan data keuangan.</p>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon si-pink">📋</div>
-      <h3>Sistem Informasi Akuntansi</h3>
-      <p>Pemahaman mendalam mengenai siklus akuntansi, pelaporan keuangan, dan analisis data keuangan.</p>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon si-green">👥</div>
-      <h3>Organisasi & Manajemen</h3>
-      <p>Kemampuan dalam pengelolaan organisasi, perencanaan, dan koordinasi kegiatan kelompok.</p>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon si-orange">🎙️</div>
-      <h3>Public Speaking</h3>
-      <p>Kemampuan berkomunikasi dan presentasi di depan publik dengan percaya diri.</p>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon si-blue">🤝</div>
-      <h3>Human Resource Management</h3>
-      <p>Pengetahuan dasar dalam pengelolaan sumber daya manusia, rekrutmen, dan pengembangan SDM.</p>
     </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" style="background:rgba(124,58,237,.02)">
-  <div class="section-header reveal">
-    <h2>Pengalaman</h2>
-    <p>Pengalaman kerja dan keorganisasian saya</p>
-    <div class="line"></div>
+<section id="experience">
+  <div class="sec-header r from-bottom">
+    <h2>Pengalaman Kerja</h2>
+    <p>Pengalaman yang membentuk kemampuan saya</p>
+    <div class="sep"></div>
   </div>
-  <div class="exp-grid">
-    <div class="exp-card reveal">
-      <div class="exp-badge work">🏢 Pengalaman Kerja</div>
-      <h3>PT Daya Miffa</h3>
-      <div class="role">Accounting Staff Intern · 2021</div>
+  <div class="exp-list">
+    <div class="exp-item r from-bottom">
+      <div class="exp-date">Des 2025 — Jan 2026</div>
+      <div class="exp-body">
+        <span class="exp-tag work">Research</span>
+        <h3>Research Assistant Intern</h3>
+        <div class="company">JIFPRO (Japan International Forestry Promotion and Cooperation Center)</div>
+        <div class="location">Bogor, Jawa Barat</div>
+        <ul>
+          <li>Melakukan pencatatan data lapangan, monitoring, dan analisis pertumbuhan vegetasi di kawasan Taman Nasional Gunung Halimun Salak (TNGHS).</li>
+          <li>Menyusun laporan analitis kondisi vegetasi berdasarkan data lapangan untuk mendukung evaluasi dan pengambilan keputusan berbasis bukti.</li>
+          <li>Berhasil mengidentifikasi dan menganalisis lebih dari 100 sampel tanaman sesuai protokol penelitian yang berlaku.</li>
+          <li>Menilai cadangan karbon Above-Ground Biomass (AGB) di beberapa lokasi penelitian dalam TNGHS.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item r from-bottom">
+      <div class="exp-date">Agu 2025 — Des 2025</div>
+      <div class="exp-body">
+        <span class="exp-tag lab">Teaching</span>
+        <h3>Laboratory Teaching Assistant</h3>
+        <div class="company">IPB University</div>
+        <div class="location">Bogor, Indonesia</div>
+        <ul>
+          <li>Membantu dosen dalam merencanakan dan mengoordinasikan sesi praktikum di bidang kehutanan dan ilmu lingkungan.</li>
+          <li>Membimbing mahasiswa selama praktikum dengan menjelaskan konsep, prosedur, dan metode eksperimen.</li>
+          <li>Menilai performa praktikum dan mengevaluasi laporan sesuai standar akademik.</li>
+          <li>Mengelola dan memverifikasi nilai serta catatan penilaian mahasiswa secara akurat.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background:var(--c-surface)">
+  <div class="sec-header r from-bottom">
+    <h2>Pendidikan</h2>
+    <p>Fondasi akademik yang saya bangun</p>
+    <div class="sep"></div>
+  </div>
+  <div class="edu-card r from-scale">
+    <div class="edu-icon">🎓</div>
+    <div class="edu-info">
+      <h3>Institut Pertanian Bogor</h3>
+      <div class="dept">Sarjana Silvikultur</div>
+      <div class="loc">Dramaga, Bogor, Jawa Barat · Agustus 2022 — Juni 2026</div>
+      <div class="gpa">⭐ IPK 3.58 / 4.00</div>
+      <p style="margin-top:14px;font-size:.88rem;color:var(--c-ink-light);line-height:1.75">
+        Aktif mengembangkan kemampuan analitis dan riset melalui berbagai proyek, termasuk sebagai Asisten Praktikum Silvikultur. Pengalaman ini memperkuat kemampuan dalam observasi lapangan, validasi data, dan komunikasi konsep ilmiah.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZATION -->
+<section id="org">
+  <div class="sec-header r from-bottom">
+    <h2>Organisasi</h2>
+    <p>Keterlibatan dalam kegiatan kemahasiswaan</p>
+    <div class="sep"></div>
+  </div>
+  <div class="org-grid">
+    <div class="org-card r from-bottom d1">
+      <div class="org-type">Des 2023 — Des 2024</div>
+      <h3>Tree Grower Community</h3>
+      <div class="org-role">Internal Affairs Staff</div>
       <ul>
-        <li>Membuat jurnal akuntansi harian berdasarkan transaksi yang terjadi</li>
-        <li>Menginput data keuangan ke dalam sistem komputer perusahaan</li>
-        <li>Menyiapkan dokumen pendukung untuk proses pelaporan keuangan</li>
+        <li>Mengoordinasikan kegiatan internal termasuk program pelatihan dan evaluasi kinerja anggota.</li>
+        <li>Mengelola komunikasi antaranggota untuk lingkungan kerja kolaboratif.</li>
+        <li>Berkontribusi dalam penyusunan program kerja pengembangan kapasitas SDM.</li>
       </ul>
     </div>
-    <div class="exp-card reveal">
-      <div class="exp-badge org">🎭 Organisasi</div>
-      <h3>BSI Student Executive Board</h3>
-      <div class="role">Anggota Organisasi</div>
+    <div class="org-card r from-bottom d2">
+      <div class="org-type">Des 2023 — Nov 2024</div>
+      <h3>BEM Fakultas Kehutanan IPB</h3>
+      <div class="org-role">Student Welfare Advocacy Staff</div>
       <ul>
-        <li>Partisipasi aktif dalam kegiatan keorganisasian kampus</li>
-        <li>Berkontribusi dalam perencanaan dan pelaksanaan program kerja</li>
-        <li>Berkolaborasi dengan anggota lain untuk mencapai tujuan organisasi</li>
+        <li>Mengelola dan memperbarui situs web Departemen Kesejahteraan Mahasiswa.</li>
+        <li>Menyelenggarakan forum diskusi dan inisiatif advokasi untuk aspirasi mahasiswa.</li>
+        <li>Meningkatkan transparansi dan efisiensi layanan mahasiswa di tingkat fakultas.</li>
+      </ul>
+    </div>
+    <div class="org-card r from-bottom d3">
+      <div class="org-type">Nov 2023 — Mar 2024</div>
+      <h3>Forester Cup</h3>
+      <div class="org-role">Public Relations Staff</div>
+      <ul>
+        <li>Mengelola komunikasi dengan lima mitra internal dan eksternal untuk kelancaran acara.</li>
+        <li>Bertugas sebagai Liaison Officer (LO) untuk keynote speaker.</li>
+      </ul>
+    </div>
+    <div class="org-card r from-bottom d4">
+      <div class="org-type">Agu 2023 — Des 2023</div>
+      <h3>IPB CUP 2023</h3>
+      <div class="org-role">Event Staff</div>
+      <ul>
+        <li>Bertanggung jawab atas koordinasi teknis dan operasional acara di lapangan.</li>
+        <li>Mendukung kelancaran acara melalui pengelolaan logistik dan koordinasi jadwal pertandingan.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ACHIEVEMENT -->
-<section id="achievement">
-  <div class="section-header reveal">
-    <h2>Penghargaan</h2>
-    <p>Pencapaian yang telah saya raih</p>
-    <div class="line"></div>
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--c-surface)">
+  <div class="sec-header r from-bottom">
+    <h2>Proyek</h2>
+    <p>Inisiatif yang pernah saya ikuti</p>
+    <div class="sep"></div>
   </div>
-  <div class="achieve-card reveal">
-    <div class="achieve-icon">🏆</div>
-    <h3>Penghargaan Prestasi Akademik</h3>
-    <p>Diterima sebagai mahasiswa baru Universitas BSI berdasarkan prestasi akademik yang dicapai selama masa sekolah menengah, termasuk peringkat 1 di kelas jurusan akuntansi SMK Negeri 1 Limboto.</p>
+  <div class="proj-grid">
+    <div class="proj-card r from-bottom d1">
+      <div class="proj-year">2024</div>
+      <h3>AKSI</h3>
+      <p>Acara tahunan Tree Grower Community yang mempertemukan mahasiswa dan alumni lintas angkatan Departemen Silvikultur IPB melalui program reuni dan networking.</p>
+    </div>
+    <div class="proj-card r from-bottom d2">
+      <div class="proj-year">2024</div>
+      <h3>Rimbawan Desa</h3>
+      <p>Program pengabdian masyarakat yang melibatkan mahasiswa dalam kegiatan penanaman pohon, konservasi lingkungan, dan pemberdayaan masyarakat desa mitra.</p>
+    </div>
+    <div class="proj-card r from-bottom d3">
+      <div class="proj-year">2024</div>
+      <h3>Klinik AGE</h3>
+      <p>Program edukasi dari BEM FAHUTAN yang berfokus pada kesadaran dan edukasi kesehatan mental mahasiswa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="sec-header r from-bottom">
+    <h2>Keterampilan</h2>
+    <p>Tools dan kemampuan yang saya kuasai</p>
+    <div class="sep"></div>
+  </div>
+  <div class="skill-row r from-bottom">
+    <div class="skill-chip r d1">Microsoft Word</div>
+    <div class="skill-chip r d2">Microsoft Excel</div>
+    <div class="skill-chip r d3">PowerPoint</div>
+    <div class="skill-chip r d4">Canva</div>
+    <div class="skill-chip r d5">Riset Lapangan</div>
+    <div class="skill-chip r d1">Analisis Data</div>
+    <div class="skill-chip r d2">Public Speaking</div>
+    <div class="skill-chip r d3">Laporan Analitis</div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" style="background:rgba(124,58,237,.02)">
-  <div class="section-header reveal">
+<section id="contact">
+  <div class="sec-header r from-bottom">
     <h2>Hubungi Saya</h2>
-    <p>Terhubung dengan saya melalui media berikut</p>
-    <div class="line"></div>
+    <p>Terhubung dengan saya</p>
+    <div class="sep"></div>
   </div>
-  <div class="contact-grid">
-    <a href="mailto:Rismagustina02@gmail.com" class="contact-item reveal">
-      <div class="contact-icon si-purple">📧</div>
-      <div>
+  <div class="contact-row">
+    <a href="mailto:rismagustina4@gmail.com" class="contact-card r from-bottom d1">
+      <div class="cc-icon">✉️</div>
+      <div class="cc-text">
         <h4>Email</h4>
-        <p>Rismagustina02@gmail.com</p>
+        <p>rismagustina4@gmail.com</p>
       </div>
     </a>
-    <a href="https://wa.me/895181130784" target="_blank" rel="noopener" class="contact-item reveal">
-      <div class="contact-icon si-green">💬</div>
-      <div>
+    <a href="https://wa.me/6289518113078" target="_blank" rel="noopener" class="contact-card r from-bottom d2">
+      <div class="cc-icon">💬</div>
+      <div class="cc-text">
         <h4>WhatsApp</h4>
-        <p>0895-1811-30784</p>
+        <p>+62 895-1811-3078</p>
       </div>
     </a>
-    <a href="https://www.linkedin.com/in/rismastna" target="_blank" rel="noopener" class="contact-item reveal">
-      <div class="contact-icon si-blue">🔗</div>
-      <div>
+    <a href="https://www.linkedin.com/in/rismastna" target="_blank" rel="noopener" class="contact-card r from-bottom d3">
+      <div class="cc-icon">🔗</div>
+      <div class="cc-text">
         <h4>LinkedIn</h4>
         <p>linkedin.com/in/rismastna</p>
       </div>
     </a>
-    <a href="https://www.instagram.com/rismastna" target="_blank" rel="noopener" class="contact-item reveal">
-      <div class="contact-icon si-pink">📷</div>
-      <div>
-        <h4>Instagram</h4>
-        <p>@rismastna</p>
+    <div class="contact-card r from-bottom d4">
+      <div class="cc-icon">📍</div>
+      <div class="cc-text">
+        <h4>Lokasi</h4>
+        <p>Bogor, Jawa Barat</p>
       </div>
-    </a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 Risma Agustina. Dibuat dengan semangat untuk masa depan yang lebih baik.</p>
+  <p>&copy; 2026 Risma Agustina · Dibuat dengan dedikasi untuk masa depan yang lebih hijau 🌿</p>
 </footer>
 
 <script>
-  // NAVBAR SCROLL
-  var nav = document.getElementById('navbar');
+  // Nav scroll
+  var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+    nav.classList.toggle('scrolled', scrollY > 50);
   });
 
-  // MOBILE NAV TOGGLE
+  // Mobile toggle
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   toggle.addEventListener('click', function() {
@@ -451,36 +774,35 @@
     a.addEventListener('click', function() { links.classList.remove('open'); });
   });
 
-  // SCROLL REVEAL
-  var reveals = document.querySelectorAll('.reveal');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+  // Scroll reveal with IntersectionObserver
+  var reveals = document.querySelectorAll('.r');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('show');
+        io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
-  reveals.forEach(function(el) { observer.observe(el); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { io.observe(el); });
 
-  // COUNTER ANIMATION
-  var counters = document.querySelectorAll('.stat-item .num');
-  var counterObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var el = entry.target;
-        var target = parseInt(el.textContent);
-        var current = 0;
-        var increment = Math.ceil(target / 40);
-        var timer = setInterval(function() {
-          current += increment;
-          if (current >= target) { current = target; clearInterval(timer); }
-          el.textContent = current + (el.dataset.suffix || '');
-        }, 30);
-        counterObs.unobserve(el);
-      }
+  // Smooth skill chip click
+  document.querySelectorAll('.skill-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      this.style.transform = 'scale(.95)';
+      var self = this;
+      setTimeout(function() { self.style.transform = ''; }, 150);
     });
-  }, { threshold: 0.5 });
-  counters.forEach(function(c) { counterObs.observe(c); });
+  });
+
+  // Parallax subtle on hero
+  var heroPhoto = document.querySelector('.hero-photo-wrap');
+  if (heroPhoto && window.innerWidth > 768) {
+    window.addEventListener('scroll', function() {
+      var y = scrollY * 0.08;
+      heroPhoto.style.transform = 'translateY(' + y + 'px)';
+    }, { passive: true });
+  }
 </script>
 </body>
 </html>
